@@ -1,6 +1,5 @@
 package application;
 
-import java.util.Date;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -15,10 +14,11 @@ public class Program {
 	
 	public Program() {
 		SellerDao sellerDao = DaoFactory.createSellerDao(); 
-	// utilizando o Factory faz-se uma dependency injection e o programa não conhece a implementação, mas apenas a interface
-
+	
 		Seller seller = sellerDao.findById(3);
+	
 		
+		System.out.println("=== TESTE 1: seller findById ===");
 		System.out.println(seller);
 	}
 }
