@@ -10,11 +10,14 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
-		Department object = new Department("Books", 1);
-		Seller seller = new Seller(10, "Eduardo", "eduardo@mail.com", new Date(), 3000.00, object);
-		
+		new Program();
+	}
+	
+	public Program() {
 		SellerDao sellerDao = DaoFactory.createSellerDao(); 
 	// utilizando o Factory faz-se uma dependency injection e o programa não conhece a implementação, mas apenas a interface
+
+		Seller seller = sellerDao.findById(3);
 		
 		System.out.println(seller);
 	}
