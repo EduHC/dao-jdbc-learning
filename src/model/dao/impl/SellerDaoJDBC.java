@@ -1,7 +1,6 @@
 package model.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,13 +64,34 @@ public class SellerDaoJDBC implements SellerDao{
 		finally {
 			DB.closeStatement(statement);
 		}
-		
 	}
 
 	@Override
-	public void update(Seller object) {
-		// TODO Auto-generated method stub
+	public void update(Seller Seller) {
+PreparedStatement statement = null;
 		
+		try {
+			statement = connection.prepareStatement(
+					"UPDATE seller "
+					+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
+					+ "WHERE Id = ?");
+			
+			statement.setString(1, Seller.getName());
+			statement.setString(2, Seller.getEmail());
+			statement.setDate(3, new java.sql.Date(Seller.getBirthDate().getTime()));
+			statement.setDouble(4, Seller.getBaseSalary());
+			statement.setInt(5, Seller.getDepartment().getId());
+			statement.setInt(6, Seller.getId());
+			
+			statement.executeUpdate();
+					
+		} 
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(statement);
+		}
 	}
 
 	@Override
