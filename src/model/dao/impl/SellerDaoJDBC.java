@@ -68,7 +68,7 @@ public class SellerDaoJDBC implements SellerDao{
 
 	@Override
 	public void update(Seller Seller) {
-PreparedStatement statement = null;
+		PreparedStatement statement = null;
 		
 		try {
 			statement = connection.prepareStatement(
